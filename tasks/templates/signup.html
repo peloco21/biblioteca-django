@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  body {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("{% static 'images/madera.jpg' %}") center center / cover no-repeat fixed;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f8f9fa;
+    margin: 0;
+  }
+
+  .signup-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .signup-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .signup-container label {
+    color: #f1f1f1;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+
+  .signup-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .signup-container input:focus {
+    outline: 2px solid #6c63ff;
+  }
+
+  .signup-container button {
+    background-color: #4CAF50;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+
+  .signup-container button:hover {
+    background-color: #45a049;
+  }
+
+  .signup-container p {
+    color: #ffbaba;
+    font-size: 0.95em;
+  }
+
+  strong {
+    color: #fff176;
+  }
+</style>
+
+<div class="signup-container">
+  <form method="post" novalidate>
+    {% csrf_token %}
+
+    <h1>Registrarse</h1>
+
+    <div>
+      {{ form.username.label_tag }}
+      {{ form.username }}
+      {% for error in form.username.errors %}
+        <p>{{ error }}</p>
+      {% endfor %}
+    </div>
+
+    <div>
+      {{ form.email.label_tag }}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+        <p>{{ error }}</p>
+      {% endfor %}
+    </div>
+
+    <div>
+      {{ form.password1.label_tag }}
+      {{ form.password1 }}
+      {% for error in form.password1.errors %}
+        <p>{{ error }}</p>
+      {% endfor %}
+    </div>
+
+    <div>
+      {{ form.password2.label_tag }}
+      {{ form.password2 }}
+      <p><strong>*Debe tener mínimo 8 caracteres, una mayúscula, una minúscula y un símbolo especial.*</strong></p>
+      {% for error in form.password2.errors %}
+        <p>{{ error }}</p>
+      {% endfor %}
+    </div>
+
+    <button type="submit">Registrarse</button>
+  </form>
+</div>
+
+{% endblock %}

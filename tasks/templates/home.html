@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+  body {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("{% static 'images/madera2.jpg' %}") center center / cover no-repeat fixed;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f8f9fa;
+    margin: 0;
+  }
+
+  .hero-section {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+      url("{% static 'images/fondo2.jpg' %}") center / cover no-repeat;
+    padding: 6rem 1rem;
+    text-align: center;
+    color: white;
+  }
+
+  .hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    animation: fadeInDown 1s ease-out;
+  }
+
+  .hero-section p {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    animation: fadeInUp 1.2s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn-custom {
+    font-size: 1.1rem;
+    margin: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn-custom-primary {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+  }
+
+  .btn-custom-primary:hover {
+    background-color: #084298;
+    box-shadow: 0 0 15px rgba(13, 110, 253, 0.6);
+  }
+
+  .btn-custom-outline {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+  }
+
+  .btn-custom-outline:hover {
+    background: white;
+    color: #0d6efd;
+    border-color: white;
+  }
+
+  .instructions-container {
+    max-width: 1100px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .instructions-container h2 {
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  }
+
+  .card-box {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+  }
+
+  .card-box:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-box i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .text-dark h5 {
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .cards-row {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+  }
+</style>
+
+<section class="hero-section">
+  <h1>Biblioteca Pública Municipal San Blas</h1>
+  <p>Tu espacio para descubrir y pedir libros fácilmente.</p>
+  <div>
+    {% if not user.is_authenticated %}
+      <a href="/signup" class="btn btn-custom btn-custom-primary">Registrarse</a>
+      <a href="/signin" class="btn btn-custom btn-custom-outline">Iniciar Sesión</a>
+    {% else %}
+      <a href="/tasks" class="btn btn-custom btn-custom-primary">Ver Libros</a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="instructions-container">
+  <h2>¿Cómo funciona?</h2>
+  <div class="cards-row">
+    <div class="card-box text-dark col">
+      <i class="bi bi-shield-lock text-primary"></i>
+      <h5>Administradores</h5>
+      <p>Pueden añadir, actualizar o borrar libros para mantener el catálogo al día.</p>
+    </div>
+    <div class="card-box text-dark col">
+      <i class="bi bi-people text-success"></i>
+      <h5>Usuarios Invitados</h5>
+      <p>Registrándose, puedes ver el listado de libros disponibles y pedir préstamos.</p>
+    </div>
+    <div class="card-box text-dark col">
+      <i class="bi bi-bookmark-check text-warning"></i>
+      <h5>Préstamos</h5>
+      <p>Solicita préstamos de libros fácilmente y gestiona tus pedidos desde tu perfil.</p>
+    </div>
+  </div>
+  <div class="card-box text-dark mt-4 mx-auto" style="max-width: 900px;">
+    <h5 class="mb-3 text-center"><i class="bi bi-info-circle text-secondary"></i>Condiciones Generales</h5>
+    <ul class="text-start" style="font-size: 1.05rem; line-height: 1.8;">
+      <li>El plazo máximo de devolución es de <strong>30 días naturales</strong> desde la fecha de préstamo.</li>
+      <li>Puedes solicitar <strong>5 libros</strong> a la vez como maximo hasta que devuelvas alguno</li>
+      <li>En caso de no entregarlo a tiempo saldra como <strong>en retraso</strong> en tu pagina de mis prestamos.</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

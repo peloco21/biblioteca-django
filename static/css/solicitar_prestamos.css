@@ -1,0 +1,132 @@
+/* styles.css */
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("/static/images/fondo.jpg");
+}
+
+nav {
+    background-color: #2c3e50;
+    padding: 0.5em 1em;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #34495e;
+    border-radius: 4px;
+}
+
+.user-info {
+    color: white;
+    margin-left: auto;
+}
+
+.notice {
+    background-color: #ecf0f1;
+    padding: 1em;
+    border-bottom: 1px solid #ccc;
+}
+
+main {
+    padding: 1.5em;
+}
+
+/* Estilos para la página de Solicitar Préstamo */
+.prestamos-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+}
+
+/* Estilos para el formulario */
+.loan-form {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loan-form p {
+    margin: 10px 0;
+}
+
+/* Estilos para los campos de formulario */
+.loan-form input,
+.loan-form select,
+.loan-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+.loan-form input:focus,
+.loan-form select:focus,
+.loan-form textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Estilo para el botón */
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.loan-form button {
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+}
+
+main {
+    padding: 2em;
+    background-color: #ecf0f1;
+    min-height: 100vh;
+}

@@ -1,0 +1,8 @@
+body {
+    background-image: url("/static/images/fondo2.jpg") !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+

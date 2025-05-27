@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    background: 
+      linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+      url("{% static 'images/madera.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fbfbfb;
+    min-height: 100vh;
+    margin: 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .contacto-container {
+    padding: 4rem 1rem;
+  }
+
+  .glass-card {
+    background: rgba(252, 252, 252, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    color: #f5f5f5;
+    transition: transform 0.3s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .glass-card h3 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .glass-card p, .glass-card a, .glass-card li {
+    color: #e0e0e0;
+    font-size: 1rem;
+  }
+
+  .glass-card a {
+    text-decoration: none;
+    color: #a3d5ff;
+  }
+
+  .glass-card a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+  }
+
+  iframe {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  footer {
+    background-color: #1f1f2e;
+    padding: 3rem 1rem;
+    color: #bbb;
+  }
+
+  footer a {
+    color: #ddd;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+  
+</style>
+
+<div class="container contacto-container">
+  <div class="row justify-content-center mb-5 text-center">
+    <div class="col-lg-8">
+      <h1 class="fw-bold">📚 Contáctanos</h1>
+      <p class="lead">Centro Cultural Antonio Machado, San Blas (Madrid). Siempre encantados de ayudarte.</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="glass-card h-100">
+        <h3>📞 Información de contacto</h3>
+        <p><strong>Dirección:</strong><br> Calle San Román del Valle, 8<br> 28037, San Blas, Madrid</p>
+        <p><strong>Teléfono:</strong><br> <a href="tel:+34917502106">+34 91 750 21 06</a></p>
+        <p><strong>Email:</strong><br> <a href="mailto:bibiotecaproyecto2025@gmail.com">bibiotecaproyecto2025@gmail.com</a></p>
+        <p><strong>Horario:</strong></p>
+        <ul class="list-unstyled">
+          <li>Lunes a Viernes: 9:00 - 21:00</li>
+          <li>Sábados: 10:00 - 14:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="glass-card h-100 p-0">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3033.427645155866!2d-3.621730741880216!3d40.420280457570335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422f84ffed31ef%3A0x9475bbf0e2085f3c!2sCentro%20Cultural%20Antonio%20Machado%2C%20C.%20San%20Rom%C3%A1n%20del%20Valle%2C%208%2C%2028037%20Madrid!5e0!3m2!1ses!2ses!4v1716400000000!5m2!1ses!2ses"
+            width="100%"
+            height="350"
+            style="border:0; border-radius: 15px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); display: block;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

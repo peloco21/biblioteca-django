@@ -1,0 +1,72 @@
+/* Estilos generales para la creación de libro */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado de la página */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: #fff;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para los campos del formulario */
+form input, form select, form textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 0.95em;
+    box-sizing: border-box;
+}
+
+/* Estilo para el botón de guardar */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa todo el ancho del formulario */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para los mensajes de error */
+p.error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.95em;
+    margin-top: 10px;
+}
+
+/* Estilo para el contenedor principal */
+main {
+    background-color: #ecf0f1;
+    min-height: 100vh;
+    padding: 1.5em;
+}

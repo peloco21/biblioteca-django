@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: 
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url("{% static 'images/madera2.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .title-section {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .title-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+  }
+
+  .filter-form {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.5rem;
+  }
+
+  .book-card {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+    color: #0d6efd;
+    display: block;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .book-card:hover {
+    transform: translateY(-5px);
+    background: rgba(235, 242, 255, 0.95);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+
+  .book-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: inherit;
+  }
+
+  .book-title:hover {
+    text-decoration: underline;
+  }
+
+  .book-info p {
+    margin-bottom: 0.3rem;
+    color: #34495e;
+  }
+
+  .no-results {
+    background-color: #fff3cd;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 500;
+    color: #856404;
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  }
+</style>
+
+<div class="container">
+  <div class="title-section">
+    <h1>Explorar Libros</h1>
+  </div>
+
+  <div class="text-center mb-3">
+    <h5 class="fw-semibold text-light text-shadow">Puedes filtrar por la letra por la que empieza el libro</h5>
+  </div>
+
+  <div class="d-flex justify-content-center flex-wrap mb-4">
+    {% for letra_abecedario in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+      <a href="?letra={{ letra_abecedario }}" class="btn btn-outline-light btn-sm m-1 {% if letra_abecedario == letra %}active{% endif %}">
+        {{ letra_abecedario }}
+      </a>
+    {% endfor %}
+    {% if letra %}
+      <a href="{% url 'tasks' %}" class="btn btn-warning btn-sm m-1">Todos</a>
+    {% endif %}
+  </div>
+
+  <form method="get" class="filter-form">
+  <div class="row g-3 align-items-end">
+    <div class="col-md-3">
+      <input type="text" name="titulo" class="form-control" placeholder="Título" value="{{ titulo }}">
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="autor" class="form-control" placeholder="Autor" value="{{ autor }}">
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="editorial" class="form-control" placeholder="Editorial" value="{{ editorial }}">
+    </div>
+    <div class="col-md-3">
+      <input type="number" name="año" class="form-control" placeholder="Año" value="{{ año }}">
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-end mt-2">
+    <div class="col-md-3">
+      <input type="number" name="isbn" class="form-control" placeholder="ISBN" value="{{ isbn }}">
+    </div>
+    <div class="col-md-3">
+      <select name="categoria" class="form-select" id="id_categoria">
+        <option value="">Todas las categorías</option>
+        {% for cat_val, cat_display in categorias %}
+          <option value="{{ cat_val }}" {% if cat_val == categoria %}selected{% endif %}>
+            {{ cat_display }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select name="subcategoria" class="form-select" id="id_subcategoria">
+        <option value="">Todas las subcategorías</option>
+        <!-- Se llenará por JS -->
+      </select>
+    </div>
+    <div class="col-md-3 d-flex gap-2">
+      <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+      <a href="{% url 'tasks' %}" class="btn btn-outline-secondary w-100">Limpiar</a>
+    </div>
+  </div>
+</form>
+
+  {% if tasks %}
+    <div class="row g-4">
+      {% for libro in tasks %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <a href="{% url 'task_detail' libro.id %}" class="book-card text-decoration-none">
+            {% if libro.portada %}
+              <img src="{{ libro.portada.url }}" alt="Portada de {{ libro.titulo }}" class="img-thumbnail mb-3" style="width: 100%; height: auto; border-radius: 12px;">
+            {% else %}
+              <img src="{% static 'images/no-image.png' %}" alt="Sin portada" class="img-thumbnail mb-3" style="width: 100%; height: auto; border-radius: 12px;">
+            {% endif %}
+            <div class="book-title">{{ libro.titulo }}</div>
+            <div class="book-info text-dark">
+              <p><strong>Autor:</strong> {{ libro.autor }}</p>
+              <p><strong>Editorial:</strong> {{ libro.editorial }}</p>
+              <p><strong>Año:</strong> {{ libro.año }}</p>
+              <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+              <p><strong>Categoría:</strong> {{ libro.get_categoria_display }}</p>
+              <p><strong>Ejemplares disponibles:</strong> {{ libro.ejemplares_disponibles }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="no-results mt-4">
+      No se encontraron libros con los filtros aplicados.
+    </div>
+  {% endif %}
+</div>
+
+<script id="subcategorias-data" type="application/json">
+  {{ subcategorias_json|safe }}
+</script>
+<script>
+  const subcategorias = JSON.parse(document.getElementById('subcategorias-data').textContent);
+  const categoriaSelect = document.getElementById('id_categoria');
+  const subcategoriaSelect = document.getElementById('id_subcategoria');
+  const subcategoriaSeleccionada = "{{ subcategoria }}";
+
+  function actualizarSubcategorias() {
+    const categoria = categoriaSelect.value;
+    const opciones = subcategorias[categoria] || [];
+
+    subcategoriaSelect.innerHTML = '<option value="">Todas las subcategorías</option>';
+
+    opciones.forEach(([val, texto]) => {
+      const option = document.createElement('option');
+      option.value = val;
+      option.textContent = texto;
+      if(val === subcategoriaSeleccionada) {
+        option.selected = true;
+      }
+      subcategoriaSelect.appendChild(option);
+    });
+  }
+
+  actualizarSubcategorias();
+
+  categoriaSelect.addEventListener('change', () => {
+    subcategoriaSelect.value = "";
+    actualizarSubcategorias();
+  });
+</script>
+
+{% endblock %}

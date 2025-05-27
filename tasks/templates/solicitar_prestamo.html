@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: 
+      linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      url("{% static 'images/fondo2.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  .prestamos-container {
+    max-width: 700px;
+    margin: 4rem auto;
+    padding: 3rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+  }
+
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+  }
+
+  form.loan-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .submit-button {
+    align-self: center;
+    padding: 0.75rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+  }
+
+  .submit-button:hover, .submit-button:focus {
+    background: linear-gradient(135deg, #0056b3, #004494);
+    transform: translateY(-1px);
+  }
+
+  .filtro-form {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background-color: rgba(248, 249, 250, 0.95);
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+  }
+
+  .filtro-form label {
+    font-weight: 600;
+    color: #495057;
+  }
+
+  .filtro-form .form-control,
+  .filtro-form .form-select {
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+  }
+
+  .filtro-form .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  .filtro-form .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+</style>
+
+<div class="prestamos-container">
+  <h1>Solicitar Préstamo de Libro</h1>
+
+  {% if messages %}
+  <div class="mb-4">
+    {% for message in messages %}
+      {% with message.tags as tag %}
+        {% if tag == 'error' %}
+          {% with 'danger' as bootstrap_tag %}
+            <div class="alert alert-{{ bootstrap_tag }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endwith %}
+        {% else %}
+          <div class="alert alert-{{ tag }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+      {% endwith %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+  <form method="GET" class="filtro-form">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label for="id_categoria" class="form-label">Categoría</label>
+        <select name="categoria" id="id_categoria" class="form-select">
+          <option value="">Todas las categorías</option>
+          {% for code, name in categorias %}
+            <option value="{{ code }}" {% if selected_categoria == code %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="id_titulo" class="form-label">Título</label>
+        <input type="text" name="titulo" id="id_titulo" class="form-control" value="{{ selected_titulo }}">
+      </div>
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-secondary">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  <form method="POST" class="loan-form" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="submit-button">Solicitar Préstamo</button>
+  </form>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const fechaInput = document.querySelector('input[type="date"][name="fecha_devolucion_estimada"]');
+  if (fechaInput) {
+    const hoy = new Date();
+    const maxFecha = new Date();
+    maxFecha.setDate(hoy.getDate() + 30);
+
+    const formatoFecha = (date) => date.toISOString().split('T')[0];
+
+    fechaInput.setAttribute('min', formatoFecha(hoy));
+    fechaInput.setAttribute('max', formatoFecha(maxFecha));
+  }
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 2em;
+    background-color: #ecf0f1;
+    min-height: 100vh;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2em;
+    margin-top: 1em;
+}
+
+/* Contenedor para la tabla */
+.usuarios-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla de usuarios */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #2c3e50;
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/* Enlace de acción */
+a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* Enlace específico para "Cambiar rol" */
+a.cambiar-rol {
+    color: #099237;
+    font-weight: bold;
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+
+a.cambiar-rol:hover {
+    text-decoration: underline;
+}

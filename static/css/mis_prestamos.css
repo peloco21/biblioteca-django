@@ -1,0 +1,59 @@
+/* mis_prestamos.css */
+
+.prestamos-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.prestamos-container h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 1em;
+}
+
+.prestamos-container table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.prestamos-container thead {
+    background-color: #2980b9;
+    color: white;
+}
+
+.prestamos-container th,
+.prestamos-container td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.prestamos-container tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.prestamos-container tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.prestamos-container a {
+    background-color: #27ae60;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.prestamos-container a:hover {
+    background-color: #219150;
+}
+
+.prestamos-container p {
+    text-align: center;
+    font-size: 1.1em;
+    color: #7f8c8d;
+}

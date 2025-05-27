@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: 
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url("{% static 'images/madera2.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .devolver-wrapper {
+    max-width: 600px;
+    margin: 4rem auto;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .devolver-wrapper h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #34495e;
+  }
+
+  .devolver-wrapper p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #000000;
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9);
+  }
+
+  .devolver-wrapper button {
+    background-color: #27ae60;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .devolver-wrapper button:hover {
+    background-color: #1e8449;
+  }
+
+  .devolver-wrapper a {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #2980b9;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .devolver-wrapper a:hover {
+    text-decoration: underline;
+    color: #1c5980;
+  }
+</style>
+
+<div class="devolver-wrapper">
+  <h1>Devolución del Libro</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <p>¿Estás seguro de que has devuelto el libro <strong>"{{ prestamo.libro.titulo }}"</strong>?</p>
+    <button type="submit">Confirmar Devolución</button>
+  </form>
+
+  <a href="{% url 'mis_prestamos' %}">Cancelar</a>
+  
+</div>
+{% endblock %}

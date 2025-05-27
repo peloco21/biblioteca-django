@@ -1,0 +1,90 @@
+/* Estilos generales para cambiar rol de usuario */
+
+/* Quita espacio arriba de todo el contenido */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado de la página */
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para las etiquetas */
+label {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilo para el selector de rol */
+select {
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Estilo para el botón de submit */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa todo el ancho del formulario */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para el enlace de volver a inicio */
+a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+a:hover {
+    color: #2c3e50;
+}
+
+/* Estilo para el contenedor principal */
+main {
+    background-color: #ecf0f1;
+    min-height: 100vh;
+    padding: 2em;
+}

@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  
+  body {
+   
+    background: 
+      linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+      url("{% static 'images/fondo2.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2c3e50;
+    min-height: 100vh;
+    margin: 0;
+  }
+  .prestamos-container {
+    max-width: 1000px;
+    margin: 3rem auto 5rem;
+    padding: 2rem 2.5rem;
+    background-color: rgba(255, 255, 255, 0.85); 
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  }
+
+  h1 {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 2rem;
+    font-weight: 700;
+  }
+
+  .estado-pendiente {
+    color: #ffc107;
+    font-weight: 600;
+  }
+
+  .estado-devuelto {
+    color: #28a745;
+    font-weight: 600;
+  }
+
+  .accion-link {
+    text-decoration: none;
+  }
+
+  .accion-link:hover {
+    text-decoration: underline;
+  }
+
+  .no-prestamos {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin-top: 3rem;
+  }
+</style>
+
+<div class="prestamos-container">
+  <h1>Mis Préstamos</h1>
+
+  {% if prestamos_con_estado %}
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Libro</th>
+            <th>Fecha de Préstamo</th>
+            <th>Fecha Devolución Estimada</th>
+            <th>Fecha Devolución Real</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in prestamos_con_estado %}
+            {% with prestamo=item.prestamo retrasado=item.retrasado %}
+            <tr>
+              <td>{{ prestamo.libro.titulo }}</td>
+              <td>{{ prestamo.fecha_prestamo|date:"d-m-Y H:i" }}</td>
+              <td>{{ prestamo.fecha_devolucion_estimada|date:"d-m-Y" }}</td>
+              <td>
+                {% if prestamo.fecha_devolucion_real %}
+                  {{ prestamo.fecha_devolucion_real|date:"d-m-Y H:i" }}
+                {% else %}
+                  <span class="estado-pendiente">Pendiente</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if retrasado %}
+                  <span class="text-danger fw-bold">¡En retraso!</span>
+                {% else %}
+                  {% if prestamo.estado == "pendiente" %}
+                    <span class="estado-pendiente">{{ prestamo.get_estado_display }}</span>
+                  {% else %}
+                    <span class="estado-devuelto">{{ prestamo.get_estado_display }}</span>
+                  {% endif %}
+                {% endif %}
+              </td>
+              <td>
+                {% if prestamo.estado == "pendiente" %}
+                  <a href="{% url 'devolver_prestamo' prestamo.id %}" class="accion-link btn btn-sm btn-primary">Devolver</a>
+                {% else %}
+                  <span class="text-muted">No disponible</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endwith %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="no-prestamos">No tienes préstamos solicitados.</p>
+  {% endif %}
+</div>
+{% endblock %}

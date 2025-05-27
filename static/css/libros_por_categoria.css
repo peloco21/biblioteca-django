@@ -1,0 +1,89 @@
+/* Menú de navegación */
+nav {
+    background-color: #2c3e50;
+    padding: 1em;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Asegura que los elementos estén en fila */
+    justify-content: space-between; /* Espaciado entre los elementos */
+}
+
+nav ul li {
+    margin-right: 15px; /* Ajusta el espacio entre los elementos */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #34495e;
+    border-radius: 4px;
+}
+
+/* Información del usuario a la derecha */
+.user-info {
+    color: white;
+    margin-left: auto;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Estilo para el contenido principal */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-top: 20px;
+}
+
+.libros-lista {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em;
+    margin: 20px auto;
+    width: 70%;
+    border: 1px solid #ecf0f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.libro-item {
+    background-color: #ecf0f1;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.libro-item:hover {
+    background-color: #bdc3c7;
+}
+
+/* Estilo para el enlace de "volver a categorías" */
+.volver-categorias {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 1.1em;
+    border: 2px solid #2c3e50;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.volver-categorias:hover {
+    background-color: #34495e;
+    color: white;
+}

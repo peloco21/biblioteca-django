@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  body {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("{% static 'images/madera.jpg' %}") center center / cover no-repeat fixed;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f8f9fa;
+    margin: 0;
+  }
+
+  .signup-container {
+    max-width: 500px;
+    margin: 3rem auto;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .signup-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .signup-container label {
+    color: #f1f1f1;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+
+  .signup-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .signup-container input:focus {
+    outline: 2px solid #6c63ff;
+  }
+
+  .signup-container button {
+    background-color: #4CAF50;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+
+  .signup-container button:hover {
+    background-color: #45a049;
+  }
+
+  .signup-container p {
+    color: #ffbaba;
+    font-size: 0.95em;
+    text-align: center;
+  }
+
+  strong {
+    color: #fff176;
+  }
+
+  .alert {
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 10px;
+    border-left: 5px solid red;
+    margin-bottom: 1rem;
+    color: #ffbaba;
+  }
+</style>
+
+<div class="signup-container">
+  <form method="post">
+    {% csrf_token %}
+
+    <h1>Iniciar sesión</h1>
+
+    {% if error %}
+      <div class="alert">{{ error }}</div>
+    {% endif %}
+
+    <div>
+      {{ form.username.label_tag }}
+      {{ form.username }}
+    </div>
+
+    <div>
+      {{ form.password.label_tag }}
+      {{ form.password }}
+    </div>
+
+    <button type="submit">Iniciar sesión</button>
+    <br>
+    <br>
+    <p>
+      <a href="{% url 'password_reset' %}" style="color: white; text-decoration: none;">
+        ¿Olvidaste tu contraseña?
+      </a>
+    </p>
+    
+  </form>
+</div>
+{% endblock %}
