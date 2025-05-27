@@ -29,9 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['biblioteca-django-q9hc.onrender.com', '127.0.0.1', 'localhost']
 
 
-CSRF_TRUSTED_ORIGINS = ['https://biblioteca-django-q9hc.onrender.com']
-
-
 # Application definition
 
 INSTALLED_APPS = [
